@@ -1,5 +1,5 @@
 ﻿namespace LotoStatistics {
-    partial class Form1 {
+    partial class StatsForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.ballButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -33,29 +32,17 @@
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Location = new System.Drawing.Point(12, 12);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(849, 290);
+            this.dataGrid.Size = new System.Drawing.Size(324, 231);
             this.dataGrid.TabIndex = 0;
             // 
-            // ballButton
-            // 
-            this.ballButton.Location = new System.Drawing.Point(12, 308);
-            this.ballButton.Name = "ballButton";
-            this.ballButton.Size = new System.Drawing.Size(75, 23);
-            this.ballButton.TabIndex = 1;
-            this.ballButton.Text = "Ball %";
-            this.ballButton.UseVisualStyleBackColor = true;
-            this.ballButton.Click += new System.EventHandler(this.ballButton_Click);
-            // 
-            // Form1
+            // StatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 464);
-            this.Controls.Add(this.ballButton);
+            this.ClientSize = new System.Drawing.Size(634, 387);
             this.Controls.Add(this.dataGrid);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "StatsForm";
+            this.Text = "StatsForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -63,8 +50,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ballButton;
-        public System.Windows.Forms.DataGridView dataGrid;
+        private System.Windows.Forms.DataGridView dataGrid;
     }
 }
-
