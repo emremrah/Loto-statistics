@@ -12,7 +12,7 @@ namespace LotoStatistics.DataAccessLayer {
 
         OleDbConnection connection = new OleDbConnection();
         DataTable dataTable = new DataTable();  //Bellekteki verilerin bir tablosunu temsil ediyor.
-
+        
         //SELECT
         public DataTable Read() {
             connection.ConnectionString = connectionString;
@@ -27,6 +27,15 @@ namespace LotoStatistics.DataAccessLayer {
             OleDbDataReader reader = command.ExecuteReader();
             dataTable.Load(reader);
             return dataTable;
+        }
+
+        public DataTable GetBalls(string ballNo) {
+            connection.ConnectionString = connectionString;
+            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
+                connection.Open();
+
+            OleDbCommand command = new OleDbCommand("SELECT TOP1, COUNT (TOP1) AS 'TOP SAYISI' FROM [Sheet1$] GROUP BY TOP1", connection);
+            return Execute(command);
         }
     }
 }

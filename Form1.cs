@@ -18,9 +18,9 @@ namespace LotoStatistics {
         
         public Form1() {
 
-            FileInfo fileInfo = new FileInfo("lotoistatistik.xlsx");
-            if (fileInfo.Exists)
-                System.Diagnostics.Process.Start("lotoistatistik.xlsx");
+            //FileInfo fileInfo = new FileInfo("lotoistatistik.xlsx");
+            //if (fileInfo.Exists)
+            //    System.Diagnostics.Process.Start("lotoistatistik.xlsx");
 
             InitializeComponent();
 
@@ -33,14 +33,8 @@ namespace LotoStatistics {
         }
 
         private void ballButton_Click(object sender, EventArgs e) {
-            dataGrid.SelectAll();
-            foreach (DataGridViewCell item in dataGrid.SelectedCells) {
-
-                if (item.OwningColumn.Name == "TOP1") {
-                    MessageBox.Show("correct");
-                }
-                
-            }
+            BLL bll = new BLL();
+            dataGrid.DataSource = bll.GetBalls("TOP1");
         }
     }
 }

@@ -18,5 +18,14 @@ namespace LotoStatistics.BusinessLogicLayer {
                 throw;
             }
         }
+
+        public DataTable GetBalls(string ballNo) {
+            try {
+                DAL dal = new DAL();
+                return dal.GetBalls(ballNo);
+            } catch {
+                throw;
+            }
+        }
     }
 }
