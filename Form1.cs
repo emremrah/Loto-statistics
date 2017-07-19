@@ -35,6 +35,19 @@ namespace LotoStatistics {
         private void ballButton_Click(object sender, EventArgs e) {
             BLL bll = new BLL();
             dataGrid.DataSource = bll.GetBalls("TOP1");
+            int sum=0;
+            for (int i = 0; i < dataGrid.Rows.Count-1; i++)
+			{
+                sum += (int) dataGrid[1, i].Value;
+			}
+            dataGrid.Columns.Add("TOP1ratio", "TOP1%");
+            for (int i = 0; i < dataGrid.Rows.Count-1; i++) {
+                dataGrid["TOP" + 1 + "ratio", i].Value = Convert.ToDouble(dataGrid[2 - 1, i].Value) * 100 / sum;
+            }
+        }
+
+        private void dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            MessageBox.Show(dataGrid.CurrentCell.RowIndex.ToString() + dataGrid.CurrentCell.ColumnIndex.ToString());
         }
     }
 }
