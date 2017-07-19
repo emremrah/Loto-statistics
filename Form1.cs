@@ -27,22 +27,23 @@ namespace LotoStatistics {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
+            comboBox1.SelectedIndex = 0;
             BLL bll = new BLL();
             dataGrid.DataSource = bll.Get();
         }
 
         private void ballButton_Click(object sender, EventArgs e) {
             BLL bll = new BLL();
-            dataGrid.DataSource = bll.GetBalls("TOP1");
+            dataGrid.Columns.Clear();
+            dataGrid.DataSource = bll.GetBalls(comboBox1.SelectedItem.ToString());
             int sum=0;
-            for (int i = 0; i < dataGrid.Rows.Count-1; i++)
-			{
-                sum += (int) dataGrid[1, i].Value;
-			}
-            dataGrid.Columns.Add("TOP1ratio", "TOP1%");
-            for (int i = 0; i < dataGrid.Rows.Count-1; i++) {
-                dataGrid["TOP" + 1 + "ratio", i].Value = Convert.ToDouble(dataGrid[2 - 1, i].Value) * 100 / sum;
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
+                sum += (int) dataGrid[dataGrid.Columns[comboBox1.SelectedItem.ToString() + "SAYI"].Index, i].Value;
+            }
+            dataGrid.Columns.Add(comboBox1.SelectedItem.ToString() + "ratio", comboBox1.SelectedItem.ToString() + "%");
+
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
+                dataGrid[comboBox1.SelectedItem.ToString() + "ratio", i].Value = Convert.ToDouble(dataGrid[dataGrid.Columns[comboBox1.SelectedItem.ToString() + "ratio"].Index - 1, i].Value) * 100 / sum;
             }
         }
 

@@ -34,7 +34,7 @@ namespace LotoStatistics.DataAccessLayer {
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 connection.Open();
 
-            OleDbCommand command = new OleDbCommand("SELECT TOP1, COUNT (TOP1) AS 'TOP SAYISI' FROM [Sheet1$] GROUP BY TOP1", connection);
+            OleDbCommand command = new OleDbCommand("SELECT "+ballNo+", COUNT ("+ballNo+") AS "+ballNo+"SAYI FROM [Sheet1$] GROUP BY "+ballNo+"", connection);
             return Execute(command);
         }
     }
