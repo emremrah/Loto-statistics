@@ -14,7 +14,7 @@ namespace LotoStatistics.DataAccessLayer {
         DataTable dataTable = new DataTable();  //Bellekteki verilerin bir tablosunu temsil ediyor.
         
         //SELECT
-        public DataTable Read() {
+        public DataTable Get() {
             connection.ConnectionString = connectionString;
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 connection.Open();
@@ -29,12 +29,22 @@ namespace LotoStatistics.DataAccessLayer {
             return dataTable;
         }
 
-        public DataTable GetBalls(string ballNo) {
+        //Return informations about a specific ball
+        public DataTable GetBallStats(string ballNo) {
             connection.ConnectionString = connectionString;
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 connection.Open();
 
             OleDbCommand command = new OleDbCommand("SELECT "+ballNo+", COUNT ("+ballNo+") AS "+ballNo+"SAYI FROM [Sheet1$] GROUP BY "+ballNo+"", connection);
+            return Execute(command);
+        }
+
+        public DataTable GetSeasonStats(string season) {
+            connection.ConnectionString = connectionString;
+            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
+                connection.Open();
+
+            OleDbCommand command = new OleDbCommand("SELECT TARİH as tarih FROM [Sheet1$] ",connection);
             return Execute(command);
         }
     }

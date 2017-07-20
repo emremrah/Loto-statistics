@@ -11,6 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.IO;
 using BLL = LotoStatistics.BusinessLogicLayer.BusinessLogicLayer;
+using System.Globalization;
 
 namespace LotoStatistics {
 
@@ -23,7 +24,8 @@ namespace LotoStatistics {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            comboBox1.SelectedIndex = 0;
+            ballsComboBox.SelectedIndex = 0;
+            seasonsComboBox.SelectedIndex = 0;
             BLL bll = new BLL();
             dataGrid.DataSource = bll.Get();
         }
@@ -33,23 +35,39 @@ namespace LotoStatistics {
             dataGrid.Columns.Clear();
 
             //Get selected balls statistics
-            dataGrid.DataSource = bll.GetBalls(comboBox1.SelectedItem.ToString());
+            dataGrid.DataSource = bll.GetBallStats(ballsComboBox.SelectedItem.ToString());
             
             //Calculate total amount of draw for one ball
             int sum=0;
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
-                sum += (int) dataGrid[dataGrid.Columns[comboBox1.SelectedItem.ToString() + "SAYI"].Index, i].Value;
+                sum += (int) dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem.ToString() + "SAYI"].Index, i].Value;
             }
 
             //Add a new column with a name that depending on ball
-            dataGrid.Columns.Add(comboBox1.SelectedItem.ToString() + "ratio", comboBox1.SelectedItem.ToString() + "%");
+            dataGrid.Columns.Add(ballsComboBox.SelectedItem.ToString() + "ratio", ballsComboBox.SelectedItem.ToString() + "%");
             //Add the show ratios for each number on the ball
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
-                dataGrid[comboBox1.SelectedItem.ToString() + "ratio", i].Value = (Convert.ToDouble(dataGrid[dataGrid.Columns[comboBox1.SelectedItem.ToString() + "ratio"].Index - 1, i].Value) * 100 / sum).ToString("N3");
+                dataGrid[ballsComboBox.SelectedItem.ToString() + "ratio", i].Value = Convert.ToDouble(dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem.ToString() + "ratio"].Index - 1, i].Value) * 100 / sum;
             }
         }
 
         private void dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+        }
+
+        private void ballsComboBox_KeyPress(object sender, KeyPressEventArgs e) {
+            ballButton_Click(sender, e);
+        }
+
+        private void showSeasonButton_Click(object sender, EventArgs e) {
+            BLL bll = new BLL();
+            dataGrid.Columns.Clear();
+
+            dataGrid.DataSource = bll.GetSeasonStats(seasonsComboBox.SelectedItem.ToString());
+
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
+                dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Substring(dataGrid[0, i].Value.ToString().IndexOf(" ") + 1);
+                dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Split(' ').First();
+            }
         }
     }
 }
