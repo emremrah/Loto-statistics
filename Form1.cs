@@ -75,6 +75,7 @@ namespace LotoStatistics {
         }
 
         private void showSeasonButton_Click(object sender, EventArgs e) {
+            ballButton_Click(sender, e);
             BLL bll = new BLL();
             dataGrid.Columns.Clear();
 
@@ -89,10 +90,26 @@ namespace LotoStatistics {
                 dataGrid[0, i].Value = monthSeason[dataGrid[0, i].Value.ToString()];
             }
 
+            dataGrid.Sort(dataGrid.Columns[0], ListSortDirection.Ascending);
+
             for (int i = 0; i < dataGrid.Rows.Count -1; i++) {
                 if (dataGrid[0, i].Value.ToString() != seasonsComboBox.SelectedItem.ToString()) {
                     dataGrid.Rows.RemoveAt(i);
                     i--;
+                }
+            }
+            int repeat = 1;
+            int row = 0;
+            dataGrid.Columns.Add("Repeat", "Repeat");
+            for (int i = 0; i < dataGrid.Rows.Count - 2; i++) {
+                if (dataGrid[1, i].Value.ToString() == dataGrid[1, i+1].Value.ToString()) {
+                    repeat++;
+                    dataGrid.Rows.RemoveAt(i + 1);
+                    i--;
+                } else {
+                    dataGrid[2, i].Value = (double) repeat;
+                    repeat = 1;
+                    row = i + 1;
                 }
             }
         }
