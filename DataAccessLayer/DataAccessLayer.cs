@@ -39,12 +39,12 @@ namespace LotoStatistics.DataAccessLayer {
             return Execute(command);
         }
 
-        public DataTable GetSeasonStats(string season) {
+        public DataTable GetSeasonStats(string ball, string season) {
             connection.ConnectionString = connectionString;
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 connection.Open();
 
-            OleDbCommand command = new OleDbCommand("SELECT TARİH, top2 FROM [Sheet1$] group by top2, tarih ",connection);
+            OleDbCommand command = new OleDbCommand("SELECT TARİH, "+ball+" FROM [Sheet1$] GROUP BY "+ball+", TARİH ",connection);
             return Execute(command);
         }
     }

@@ -101,7 +101,7 @@
             this.seasonsComboBox.Items.AddRange(new object[] {
             "Spring",
             "Summer",
-            "Autunm",
+            "Fall",
             "Winter"});
             this.seasonsComboBox.Location = new System.Drawing.Point(6, 22);
             this.seasonsComboBox.Name = "seasonsComboBox";

@@ -28,10 +28,10 @@ namespace LotoStatistics.BusinessLogicLayer {
             }
         }
 
-        public DataTable GetSeasonStats(string season) {
+        public DataTable GetSeasonStats(string ball, string season) {
             try {
                 DAL dal = new DAL();
-                return dal.GetSeasonStats(season);
+                return dal.GetSeasonStats(ball, season);
             } catch  {
                 
                 throw;

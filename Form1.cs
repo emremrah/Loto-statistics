@@ -79,7 +79,7 @@ namespace LotoStatistics {
             BLL bll = new BLL();
             dataGrid.Columns.Clear();
 
-            dataGrid.DataSource = bll.GetSeasonStats(seasonsComboBox.SelectedItem.ToString());
+            dataGrid.DataSource = bll.GetSeasonStats(ballsComboBox.SelectedItem.ToString(), seasonsComboBox.SelectedItem.ToString());
 
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
                 dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Substring(dataGrid[0, i].Value.ToString().IndexOf(" ") + 1);
@@ -107,7 +107,7 @@ namespace LotoStatistics {
                     dataGrid.Rows.RemoveAt(i + 1);
                     i--;
                 } else {
-                    dataGrid[2, i].Value = (double) repeat;
+                    dataGrid[2, i].Value = Convert.ToDouble(repeat);
                     repeat = 1;
                     row = i + 1;
                 }
