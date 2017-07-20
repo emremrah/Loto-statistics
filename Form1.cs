@@ -18,6 +18,7 @@ namespace LotoStatistics {
     public partial class Form1: Form {
 
         Dictionary<string, string> monthSeason = new Dictionary<string, string>();
+        Dictionary<string, string> seasonLang = new Dictionary<string, string>();
 
         public Form1() {
 
@@ -86,6 +87,13 @@ namespace LotoStatistics {
 
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
                 dataGrid[0, i].Value = monthSeason[dataGrid[0, i].Value.ToString()];
+            }
+
+            for (int i = 0; i < dataGrid.Rows.Count -1; i++) {
+                if (dataGrid[0, i].Value.ToString() != seasonsComboBox.SelectedItem.ToString()) {
+                    dataGrid.Rows.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
