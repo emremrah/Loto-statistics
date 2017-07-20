@@ -16,9 +16,24 @@ using System.Globalization;
 namespace LotoStatistics {
 
     public partial class Form1: Form {
-        
+
+        Dictionary<string, string> monthSeason = new Dictionary<string, string>();
+
         public Form1() {
 
+            monthSeason.Add("Ocak", "Winter");
+            monthSeason.Add("Şubat", "Winter");
+            monthSeason.Add("Mart", "Spring");
+            monthSeason.Add("Nisan", "Spring");
+            monthSeason.Add("Mayıs", "Spring");
+            monthSeason.Add("Haziran", "Summer");
+            monthSeason.Add("Temmuz", "Summer");
+            monthSeason.Add("Ağustos", "Summer");
+            monthSeason.Add("Eylül", "Fall");
+            monthSeason.Add("Ekim", "Fall");
+            monthSeason.Add("Kasım", "Fall");
+            monthSeason.Add("Aralık", "Winter");
+            
             InitializeComponent();
 
         }
@@ -67,6 +82,10 @@ namespace LotoStatistics {
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
                 dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Substring(dataGrid[0, i].Value.ToString().IndexOf(" ") + 1);
                 dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Split(' ').First();
+            }
+
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
+                dataGrid[0, i].Value = monthSeason[dataGrid[0, i].Value.ToString()];
             }
         }
     }

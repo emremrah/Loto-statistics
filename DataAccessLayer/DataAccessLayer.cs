@@ -12,7 +12,7 @@ namespace LotoStatistics.DataAccessLayer {
 
         OleDbConnection connection = new OleDbConnection();
         DataTable dataTable = new DataTable();  //Bellekteki verilerin bir tablosunu temsil ediyor.
-        
+
         //SELECT
         public DataTable Get() {
             connection.ConnectionString = connectionString;
@@ -44,7 +44,7 @@ namespace LotoStatistics.DataAccessLayer {
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 connection.Open();
 
-            OleDbCommand command = new OleDbCommand("SELECT TARİH as tarih FROM [Sheet1$] ",connection);
+            OleDbCommand command = new OleDbCommand("SELECT TARİH, top2 FROM [Sheet1$] group by top2, tarih ",connection);
             return Execute(command);
         }
     }
