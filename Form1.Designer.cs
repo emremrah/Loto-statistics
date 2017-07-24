@@ -31,6 +31,7 @@
             this.seasonsComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.playLotoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.ballGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -131,12 +132,23 @@
             this.progressBar1.Size = new System.Drawing.Size(627, 37);
             this.progressBar1.TabIndex = 7;
             // 
+            // playLotoButton
+            // 
+            this.playLotoButton.Location = new System.Drawing.Point(375, 254);
+            this.playLotoButton.Name = "playLotoButton";
+            this.playLotoButton.Size = new System.Drawing.Size(121, 48);
+            this.playLotoButton.TabIndex = 8;
+            this.playLotoButton.Text = "Play Loto";
+            this.playLotoButton.UseVisualStyleBackColor = true;
+            this.playLotoButton.Click += new System.EventHandler(this.playLotoButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
             this.ClientSize = new System.Drawing.Size(651, 464);
+            this.Controls.Add(this.playLotoButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ballGroupBox);
@@ -162,6 +174,7 @@
         private System.Windows.Forms.ComboBox seasonsComboBox;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button playLotoButton;
     }
 }
 
