@@ -78,16 +78,21 @@ namespace LotoStatistics {
             ballButton_Click(sender, e);
             BLL bll = new BLL();
             dataGrid.Columns.Clear();
+            progressBar1.Value = 0;
+            progressBar1.Visible = true;
 
             dataGrid.DataSource = bll.GetSeasonStats(ballsComboBox.SelectedItem.ToString(), seasonsComboBox.SelectedItem.ToString());
+            progressBar1.Maximum = dataGrid.Rows.Count * 4;
 
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
                 dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Substring(dataGrid[0, i].Value.ToString().IndexOf(" ") + 1);
                 dataGrid[0, i].Value = dataGrid[0, i].Value.ToString().Split(' ').First();
+                progressBar1.Value++;
             }
 
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
                 dataGrid[0, i].Value = monthSeason[dataGrid[0, i].Value.ToString()];
+                progressBar1.Value++;                
             }
 
             dataGrid.Sort(dataGrid.Columns[0], ListSortDirection.Ascending);
@@ -96,22 +101,33 @@ namespace LotoStatistics {
                 if (dataGrid[0, i].Value.ToString() != seasonsComboBox.SelectedItem.ToString()) {
                     dataGrid.Rows.RemoveAt(i);
                     i--;
+                    progressBar1.Maximum--;
                 }
+                progressBar1.Value++;
             }
+
             int repeat = 1;
             int row = 0;
             dataGrid.Columns.Add("Repeat", "Repeat");
+
             for (int i = 0; i < dataGrid.Rows.Count - 2; i++) {
                 if (dataGrid[1, i].Value.ToString() == dataGrid[1, i+1].Value.ToString()) {
                     repeat++;
                     dataGrid.Rows.RemoveAt(i + 1);
                     i--;
+                    progressBar1.Maximum--;
                 } else {
                     dataGrid[2, i].Value = Convert.ToDouble(repeat);
                     repeat = 1;
                     row = i + 1;
+                    progressBar1.Value++;
                 }
             }
+            progressBar1.Visible = false;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e) {
+
         }
     }
 }

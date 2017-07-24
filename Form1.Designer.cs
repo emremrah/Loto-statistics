@@ -30,6 +30,7 @@
             this.showSeasonButton = new System.Windows.Forms.Button();
             this.seasonsComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.ballGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -52,7 +53,7 @@
             this.showBallsButton.Name = "showBallsButton";
             this.showBallsButton.Size = new System.Drawing.Size(121, 35);
             this.showBallsButton.TabIndex = 1;
-            this.showBallsButton.Text = "SHOW";
+            this.showBallsButton.Text = "Show Ball Stats";
             this.showBallsButton.UseVisualStyleBackColor = true;
             this.showBallsButton.Click += new System.EventHandler(this.ballButton_Click);
             // 
@@ -74,24 +75,25 @@
             // 
             // ballGroupBox
             // 
+            this.ballGroupBox.AutoSize = true;
             this.ballGroupBox.BackColor = System.Drawing.Color.Bisque;
             this.ballGroupBox.Controls.Add(this.ballsComboBox);
             this.ballGroupBox.Controls.Add(this.showBallsButton);
             this.ballGroupBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ballGroupBox.Location = new System.Drawing.Point(369, 12);
             this.ballGroupBox.Name = "ballGroupBox";
-            this.ballGroupBox.Size = new System.Drawing.Size(148, 98);
+            this.ballGroupBox.Size = new System.Drawing.Size(148, 117);
             this.ballGroupBox.TabIndex = 3;
             this.ballGroupBox.TabStop = false;
-            this.ballGroupBox.Text = "Ball Percentages";
+            this.ballGroupBox.Text = "Ball";
             // 
             // showSeasonButton
             // 
             this.showSeasonButton.Location = new System.Drawing.Point(6, 57);
             this.showSeasonButton.Name = "showSeasonButton";
-            this.showSeasonButton.Size = new System.Drawing.Size(121, 35);
+            this.showSeasonButton.Size = new System.Drawing.Size(121, 48);
             this.showSeasonButton.TabIndex = 4;
-            this.showSeasonButton.Text = "SHOW";
+            this.showSeasonButton.Text = "Show Season Stats";
             this.showSeasonButton.UseVisualStyleBackColor = true;
             this.showSeasonButton.Click += new System.EventHandler(this.showSeasonButton_Click);
             // 
@@ -110,15 +112,24 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.seasonsComboBox);
             this.groupBox1.Controls.Add(this.showSeasonButton);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.Location = new System.Drawing.Point(369, 124);
+            this.groupBox1.Location = new System.Drawing.Point(369, 110);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(148, 98);
+            this.groupBox1.Size = new System.Drawing.Size(148, 130);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seasons";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 415);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(627, 37);
+            this.progressBar1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -126,6 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
             this.ClientSize = new System.Drawing.Size(651, 464);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ballGroupBox);
             this.Controls.Add(this.dataGrid);
@@ -136,6 +148,7 @@
             this.ballGroupBox.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -148,6 +161,7 @@
         private System.Windows.Forms.Button showSeasonButton;
         private System.Windows.Forms.ComboBox seasonsComboBox;
         private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
