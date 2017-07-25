@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,6 @@ namespace LotoStatistics {
         private int streak = 0;
         private int streakBounty = 20;
         Random random = new Random();
-        private int one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
         private int profit = 0;
 
         public PlayForm() {
@@ -48,47 +48,20 @@ namespace LotoStatistics {
         {
             InitializeSheet();
             SheetArray();
-            sheetAmountLabel.Text = (Convert.ToInt16(betText.Text) / sheet.price).ToString();
-            for (int i = 0; i < draw.GetLength(0); i++)
+            DrawLoto();
+            try {
+                sheetAmountLabel.Text = (Convert.ToInt16(betText.Text) / sheet.price).ToString();
+
+            } catch (Exception)
             {
-                for (int j = 0; j < draw.GetLength(1); j++)
-                {
-                    if (draw[i, j] == mySheet[i, j])
-                    {
-                        streak++;
-                    }
-                    else
-                    {
-                        if (streak == 1)
-                        {
-                            ball1Label.Text = (Convert.ToInt16(ball1Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        } else if (streak == 2)
-                        {
-                            ball2Label.Text = (Convert.ToInt16(ball2Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        }else if (streak == 3)
-                        {
-                            ball3Label.Text = (Convert.ToInt16(ball3Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        }else if (streak == 4)
-                        {
-                            ball4Label.Text = (Convert.ToInt16(ball4Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        }else if (streak == 5)
-                        {
-                            ball5Label.Text = (Convert.ToInt16(ball5Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        }else if (streak == 6)
-                        {
-                            ball6Label.Text = (Convert.ToInt16(ball6Label.Text) + 1).ToString();
-                            profit += streak * streakBounty;
-                        }
-                        streak = 0;
-                    }
+                return;
+            }
+            foreach (Control control in this.Controls) {
+                if (control is Label && control.Name.Contains("kolon")) {
+                    control.Text = "0";
                 }
             }
-            profitLabel.Text = profit.ToString();
+            EditLabels();
         }
 
         private void InitializeSheet()
@@ -106,11 +79,14 @@ namespace LotoStatistics {
                 }
             }
             sheet.price = KolonPrice * 8;
-
-            Sheet[] sheets = new Sheet[(int) Convert.ToInt16(betText.Text) / sheet.price];
-            for (int i = 0; i < sheets.Length; i++)
-            {
-                sheets[i] = sheet;
+            try {
+                Sheet[] sheets = new Sheet[(int) Convert.ToInt16(betText.Text) / sheet.price];
+                for (int i = 0; i < sheets.Length; i++) {
+                    sheets[i] = sheet;
+                }
+            } catch (Exception) {
+                MessageBox.Show("Enter the bet amount.");
+                return;
             }
         }
 
@@ -127,12 +103,37 @@ namespace LotoStatistics {
         {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 8; j++) {
-                    draw[i, j] = random.Next(3, 6);
+                    draw[i, j] = random.Next(4, 6);
                 }
             }
         }
 
         private void betText_TextChanged(object sender, EventArgs e) {
+        }
+
+        private void EditLabels()
+        {
+            for (int i = 0; i < draw.GetLength(1); i++) {   //Rows (Kolons)
+                for (int j = 0; j < draw.GetLength(0); j++) {   //Columns (Numbers)
+                    if (draw[j, i] == mySheet[j, i]) {  // If drawn number and our number is equal
+                        streak++;   //Increase streak
+                    }
+                    if (j >= 5 && streak >= 3)
+                    {
+                        foreach (Control control in Controls) {
+                            //Find the exact label that represents the kolon that we just looked
+                            if (control is Label && control.Name.Contains("kolon" + (i + 1).ToString())) {
+                                //Then increase it as streak (predicted numbers on that kolon)
+                                control.Text = (Convert.ToInt16(control.Text) + streak).ToString();
+                            }
+                        }
+                        profit += streak * streakBounty; //Increase the profit
+                    }
+                }
+                streak = 0;
+            }
+            profitLabel.Text = profit.ToString();
+            profit = 0;
         }
     }
 }
