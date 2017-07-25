@@ -11,13 +11,16 @@ namespace LotoStatistics {
             get;
             set;
         }
-        public Kolon[] Kolon {
+        public Kolon[] kolon {
             get;
             set;
         }
 
-        public Sheet() {
-            Kolon = new Kolon[8];
+        public int price { get; set; }
+
+        public Sheet(Kolon[] _kolon)
+        {
+            kolon = _kolon;
         }
     }
 }

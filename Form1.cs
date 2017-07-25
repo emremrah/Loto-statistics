@@ -131,9 +131,8 @@ namespace LotoStatistics {
         }
 
         private void playLotoButton_Click(object sender, EventArgs e) {
-
+            PlayForm playForm = new PlayForm();
+            playForm.Show();
         }
-
-        
     }
 }
