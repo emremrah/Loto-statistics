@@ -107,7 +107,6 @@ namespace LotoStatistics {
             }
 
             int repeat = 1;
-            int row = 0;
             dataGrid.Columns.Add("Repeat", "Repeat");
 
             for (int i = 0; i < dataGrid.Rows.Count - 2; i++) {
@@ -119,7 +118,6 @@ namespace LotoStatistics {
                 } else {
                     dataGrid[2, i].Value = Convert.ToDouble(repeat);
                     repeat = 1;
-                    row = i + 1;
                     progressBar1.Value++;
                 }
             }

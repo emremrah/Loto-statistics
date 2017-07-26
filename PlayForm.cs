@@ -12,15 +12,19 @@ using System.Windows.Forms;
 namespace LotoStatistics {
     public partial class PlayForm: Form
     {
-        private Kolon[] kolon = new Kolon[8];
         private Sheet sheet;
-        private int KolonPrice = 4;
+        private Kolon[] kolon = new Kolon[8];
         private int[,] mySheet = new int[6, 8];
         private int[,] draw = new int[6, 8];
-        private int streak = 0;
-        private int streakBounty = 20;
-        Random random = new Random();
+
         private int profit = 0;
+        private int KolonPrice = 4;
+        private const int streakBounty = 1000;
+        private int streak = 0;
+        private int sheetAmount = 0;
+        private int sheetPrice = 0;
+        Random random = new Random();
+
 
         public PlayForm() {
 
@@ -28,6 +32,7 @@ namespace LotoStatistics {
         }
 
         private void PlayForm_Load(object sender, EventArgs e) {
+            //Prepare DataGridView for 6(Numbers)*8(Kolons)
             dataGridView1.Columns.Add("BALL1", "TOP1");
             dataGridView1.Columns.Add("BALL2", "TOP2");
             dataGridView1.Columns.Add("BALL3", "TOP3");
@@ -35,29 +40,36 @@ namespace LotoStatistics {
             dataGridView1.Columns.Add("BALL5", "TOP5");
             dataGridView1.Columns.Add("BALL6", "TOP6");
             dataGridView1.Rows.Add(count : 8);
-            kolonPriceLaber.Text = KolonPrice.ToString();
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) {
-                for (int j = 0; j < dataGridView1.ColumnCount; j++) {
-                    dataGridView1[j, i].Value = 5;
-                }
-            }
+            FillRandom();
             DrawLoto();
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            dataGridView1.SelectedCells.Clear();
+            try {
+                KolonPrice = Convert.ToInt32(kolonPriceTxt.Text);
+                sheetPrice = KolonPrice * 8;
+                sheetAmount = Convert.ToInt32(betText.Text) / sheetPrice;
+                sheetAmountLabel.Text = sheetAmount.ToString();
+
+            } catch {
+                MessageBox.Show("Make sure you entered the values.");
+                return;
+            }
             InitializeSheet();
             SheetArray();
             DrawLoto();
             try {
-                sheetAmountLabel.Text = (Convert.ToInt16(betText.Text) / sheet.price).ToString();
+                sheetAmountLabel.Text = "Sheet Amount: " + (Convert.ToInt32(betText.Text) / sheet.price).ToString();
 
             } catch (Exception)
             {
                 return;
             }
-            foreach (Control control in this.Controls) {
-                if (control is Label && control.Name.Contains("kolon")) {
+            //Reset kolon values
+            foreach (Control control in Controls) {
+                if (control is Label && control.Name.Contains("kolon") && !control.Name.Contains("Price")) {
                     control.Text = "0";
                 }
             }
@@ -66,22 +78,29 @@ namespace LotoStatistics {
 
         private void InitializeSheet()
         {
-            for (int i = 0; i < kolon.Length; i++) {
-                kolon[i] = new Kolon();
-                kolon[i].price = 5;
-                kolon[i].bounty = 20;
+            //Generate Kolons
+            for (var i = 0; i < kolon.Length; i++) {
+                kolon[i] = new Kolon
+                {
+                    price = 5,
+                    bounty = 20
+                };
             }
+            //Generate single sheet and prepare it's kolon
             sheet = new Sheet(kolon);
 
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) {
-                for (int j = 0; j < dataGridView1.Columns.Count - 1; j++) {
-                    sheet.kolon[i].numbers[j] = Convert.ToInt16(dataGridView1[j, i].Value);
+            //Take all numbers in kolons from DataGrid
+            for (var i = 0; i < dataGridView1.Rows.Count - 1; i++) {
+                for (var j = 0; j < dataGridView1.Columns.Count - 1; j++) {
+                    sheet.kolon[i].numbers[j] = Convert.ToInt32(dataGridView1[j, i].Value);
                 }
             }
             sheet.price = KolonPrice * 8;
             try {
-                Sheet[] sheets = new Sheet[(int) Convert.ToInt16(betText.Text) / sheet.price];
-                for (int i = 0; i < sheets.Length; i++) {
+                //Create a Sheet array. It's amount depends on Bet and Kolon price
+                var sheets = new Sheet[Convert.ToInt32(betText.Text) / sheet.price];
+                //Make all sheets the same
+                for (var i = 0; i < sheets.Length; i++) {
                     sheets[i] = sheet;
                 }
             } catch (Exception) {
@@ -92,39 +111,44 @@ namespace LotoStatistics {
 
         private void SheetArray()
         {
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) {
-                for (int j = 0; j < dataGridView1.ColumnCount; j++) {
-                    mySheet[j, i] = Convert.ToInt16(dataGridView1[j, i].Value);
+            //Take all values from DataGrid and prepare the Sheet
+            for (var i = 0; i < dataGridView1.Rows.Count - 1; i++) {
+                for (var j = 0; j < dataGridView1.ColumnCount; j++) {
+                    mySheet[j, i] = Convert.ToInt32(dataGridView1[j, i].Value);
                 }
             }
         }
 
         private void DrawLoto()
         {
-            for (int i = 0; i < 6; i++) {
-                for (int j = 0; j < 8; j++) {
-                    draw[i, j] = random.Next(4, 6);
+            //Make a random Sheet
+            for (var i = 0; i < 6; i++) {
+                for (var j = 0; j < 8; j++) {
+                    draw[i, j] = random.Next(1, 7);
                 }
             }
         }
 
-        private void betText_TextChanged(object sender, EventArgs e) {
-        }
-
         private void EditLabels()
         {
-            for (int i = 0; i < draw.GetLength(1); i++) {   //Rows (Kolons)
-                for (int j = 0; j < draw.GetLength(0); j++) {   //Columns (Numbers)
+            for (var i = 0; i < draw.GetLength(1); i++) {   //Rows (Kolons)
+                for (var j = 0; j < draw.GetLength(0); j++) {   //Columns (Numbers)
                     if (draw[j, i] == mySheet[j, i]) {  // If drawn number and our number is equal
+                        dataGridView1[j, i].Style.BackColor = Color.Cyan;
                         streak++;   //Increase streak
                     }
+                    else
+                    {
+                        dataGridView1[j, i].Style.BackColor = Color.White;
+                    }
+                    //If the last number checked and at least three of numbers predicted
                     if (j >= 5 && streak >= 3)
                     {
                         foreach (Control control in Controls) {
                             //Find the exact label that represents the kolon that we just looked
                             if (control is Label && control.Name.Contains("kolon" + (i + 1).ToString())) {
                                 //Then increase it as streak (predicted numbers on that kolon)
-                                control.Text = (Convert.ToInt16(control.Text) + streak).ToString();
+                                control.Text = (Convert.ToInt32(control.Text) + streak).ToString();
                             }
                         }
                         profit += streak * streakBounty; //Increase the profit
@@ -134,6 +158,34 @@ namespace LotoStatistics {
             }
             profitLabel.Text = profit.ToString();
             profit = 0;
+        }
+
+        private void FillRandom()
+        {
+            //Fill the DataGrid with random values to play quickly. Values will be DISTINCT.
+            bool available = true;
+            for (var i = 0; i < dataGridView1.Rows.Count - 1; i++) {
+                for (var j = 0; j < dataGridView1.ColumnCount; j++) {
+                    int number = random.Next(1, 7);
+                    for (int k = 0; k < j; k++)
+                    {
+                        if ((int) dataGridView1[k, i].Value == number)
+                        {
+                            available = false;
+                            j--;
+                            break;
+                        }
+                        else
+                        {
+                            available = true;
+                        }
+                    }
+                    if (available)
+                    {
+                        dataGridView1[j, i].Value = number;
+                    }
+                }
+            }
         }
     }
 }

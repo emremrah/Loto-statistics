@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.betText = new System.Windows.Forms.TextBox();
-            this.kolonPriceLaber = new System.Windows.Forms.Label();
+            this.kolonPriceLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.kolon1Label = new System.Windows.Forms.Label();
             this.kolon2Label = new System.Windows.Forms.Label();
@@ -33,7 +33,6 @@
             this.kolon4Label = new System.Windows.Forms.Label();
             this.kolon5Label = new System.Windows.Forms.Label();
             this.kolon6Label = new System.Windows.Forms.Label();
-            this.kolonAmountLabel = new System.Windows.Forms.Label();
             this.sheetAmountLabel = new System.Windows.Forms.Label();
             this.profitLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,15 +45,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.kolon7Label = new System.Windows.Forms.Label();
             this.kolon8Label = new System.Windows.Forms.Label();
+            this.kolonPriceTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(428, 277);
+            this.dataGridView1.Size = new System.Drawing.Size(589, 277);
             this.dataGridView1.TabIndex = 0;
             // 
             // betText
@@ -63,20 +64,20 @@
             this.betText.Name = "betText";
             this.betText.Size = new System.Drawing.Size(100, 20);
             this.betText.TabIndex = 9;
-            this.betText.TextChanged += new System.EventHandler(this.betText_TextChanged);
             // 
-            // kolonPriceLaber
+            // kolonPriceLabel
             // 
-            this.kolonPriceLaber.AutoSize = true;
-            this.kolonPriceLaber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolonPriceLaber.Location = new System.Drawing.Point(446, 12);
-            this.kolonPriceLaber.Name = "kolonPriceLaber";
-            this.kolonPriceLaber.Size = new System.Drawing.Size(82, 16);
-            this.kolonPriceLaber.TabIndex = 10;
-            this.kolonPriceLaber.Text = "Kolon Price: ";
+            this.kolonPriceLabel.AutoSize = true;
+            this.kolonPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.kolonPriceLabel.Location = new System.Drawing.Point(607, 12);
+            this.kolonPriceLabel.Name = "kolonPriceLabel";
+            this.kolonPriceLabel.Size = new System.Drawing.Size(82, 16);
+            this.kolonPriceLabel.TabIndex = 10;
+            this.kolonPriceLabel.Text = "Kolon Price: ";
             // 
             // playButton
             // 
+            this.playButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.playButton.Location = new System.Drawing.Point(643, 394);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(98, 44);
@@ -145,21 +146,11 @@
             this.kolon6Label.TabIndex = 17;
             this.kolon6Label.Text = "0";
             // 
-            // kolonAmountLabel
-            // 
-            this.kolonAmountLabel.AutoSize = true;
-            this.kolonAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolonAmountLabel.Location = new System.Drawing.Point(446, 43);
-            this.kolonAmountLabel.Name = "kolonAmountLabel";
-            this.kolonAmountLabel.Size = new System.Drawing.Size(96, 16);
-            this.kolonAmountLabel.TabIndex = 18;
-            this.kolonAmountLabel.Text = "Kolon Amount: ";
-            // 
             // sheetAmountLabel
             // 
             this.sheetAmountLabel.AutoSize = true;
             this.sheetAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.sheetAmountLabel.Location = new System.Drawing.Point(446, 74);
+            this.sheetAmountLabel.Location = new System.Drawing.Point(607, 51);
             this.sheetAmountLabel.Name = "sheetAmountLabel";
             this.sheetAmountLabel.Size = new System.Drawing.Size(97, 16);
             this.sheetAmountLabel.TabIndex = 19;
@@ -168,7 +159,7 @@
             // profitLabel
             // 
             this.profitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.profitLabel.Location = new System.Drawing.Point(171, 368);
+            this.profitLabel.Location = new System.Drawing.Point(247, 368);
             this.profitLabel.Name = "profitLabel";
             this.profitLabel.Size = new System.Drawing.Size(130, 50);
             this.profitLabel.TabIndex = 20;
@@ -275,11 +266,20 @@
             this.kolon8Label.TabIndex = 30;
             this.kolon8Label.Text = "0";
             // 
+            // kolonPriceTxt
+            // 
+            this.kolonPriceTxt.Location = new System.Drawing.Point(685, 11);
+            this.kolonPriceTxt.Name = "kolonPriceTxt";
+            this.kolonPriceTxt.Size = new System.Drawing.Size(47, 20);
+            this.kolonPriceTxt.TabIndex = 31;
+            // 
             // PlayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(753, 450);
+            this.Controls.Add(this.kolonPriceTxt);
             this.Controls.Add(this.kolon8Label);
             this.Controls.Add(this.kolon7Label);
             this.Controls.Add(this.label8);
@@ -292,7 +292,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.profitLabel);
             this.Controls.Add(this.sheetAmountLabel);
-            this.Controls.Add(this.kolonAmountLabel);
             this.Controls.Add(this.kolon6Label);
             this.Controls.Add(this.kolon5Label);
             this.Controls.Add(this.kolon4Label);
@@ -300,7 +299,7 @@
             this.Controls.Add(this.kolon2Label);
             this.Controls.Add(this.kolon1Label);
             this.Controls.Add(this.playButton);
-            this.Controls.Add(this.kolonPriceLaber);
+            this.Controls.Add(this.kolonPriceLabel);
             this.Controls.Add(this.betText);
             this.Controls.Add(this.dataGridView1);
             this.Name = "PlayForm";
@@ -316,7 +315,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox betText;
-        private System.Windows.Forms.Label kolonPriceLaber;
+        private System.Windows.Forms.Label kolonPriceLabel;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Label kolon1Label;
         private System.Windows.Forms.Label kolon2Label;
@@ -324,7 +323,6 @@
         private System.Windows.Forms.Label kolon4Label;
         private System.Windows.Forms.Label kolon5Label;
         private System.Windows.Forms.Label kolon6Label;
-        private System.Windows.Forms.Label kolonAmountLabel;
         private System.Windows.Forms.Label sheetAmountLabel;
         private System.Windows.Forms.Label profitLabel;
         private System.Windows.Forms.Label label1;
@@ -337,5 +335,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label kolon7Label;
         private System.Windows.Forms.Label kolon8Label;
+        private System.Windows.Forms.TextBox kolonPriceTxt;
     }
 }
