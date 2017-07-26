@@ -40,19 +40,20 @@ namespace LotoStatistics {
             dataGridView1.Columns.Add("BALL5", "TOP5");
             dataGridView1.Columns.Add("BALL6", "TOP6");
             dataGridView1.Rows.Add(count : 8);
+            KolonPrice = 4;
+            kolonPriceTxt.Text = KolonPrice.ToString();
+            betText.Text = 32000.ToString();
             FillRandom();
             DrawLoto();
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            dataGridView1.SelectedCells.Clear();
             try {
-                KolonPrice = Convert.ToInt32(kolonPriceTxt.Text);
+                KolonPrice = Convert.ToInt32(kolonPriceTxt.Text);   //Take kolon price
                 sheetPrice = KolonPrice * 8;
                 sheetAmount = Convert.ToInt32(betText.Text) / sheetPrice;
                 sheetAmountLabel.Text = sheetAmount.ToString();
-
             } catch {
                 MessageBox.Show("Make sure you entered the values.");
                 return;
@@ -61,7 +62,7 @@ namespace LotoStatistics {
             SheetArray();
             DrawLoto();
             try {
-                sheetAmountLabel.Text = "Sheet Amount: " + (Convert.ToInt32(betText.Text) / sheet.price).ToString();
+                sheetAmountLabel.Text = "Form sayısı: " + (Convert.ToInt32(betText.Text) / sheet.price).ToString();
 
             } catch (Exception)
             {
@@ -78,12 +79,12 @@ namespace LotoStatistics {
 
         private void InitializeSheet()
         {
-            //Generate Kolons
+            //Generate 8 number of kolons
             for (var i = 0; i < kolon.Length; i++) {
                 kolon[i] = new Kolon
                 {
                     price = 5,
-                    bounty = 20
+                    bounty = 1000
                 };
             }
             //Generate single sheet and prepare it's kolon
@@ -121,10 +122,26 @@ namespace LotoStatistics {
 
         private void DrawLoto()
         {
-            //Make a random Sheet
-            for (var i = 0; i < 6; i++) {
-                for (var j = 0; j < 8; j++) {
-                    draw[i, j] = random.Next(1, 7);
+            //Draw random loto
+            
+            bool available = true;
+            for (var i = 0; i < 8; i++) {
+                for (var j = 0; j < 6; j++) {
+                    //First pick a random number. Then compare it with all previous values in the same kolon
+                    int number = random.Next(1, 49);
+                    for (int k = 0; k < j; k++) {
+                        //If any value has been drawn before
+                        if ((int) draw[k, i] == number) {
+                            //Deny it and reroll number
+                            available = false;
+                            j--;
+                            break;
+                        } else
+                            available = true;
+                    }
+                    //If number is not denied, grab it
+                    if (available)
+                        draw[j, i] = number;
                 }
             }
         }
@@ -148,10 +165,10 @@ namespace LotoStatistics {
                             //Find the exact label that represents the kolon that we just looked
                             if (control is Label && control.Name.Contains("kolon" + (i + 1).ToString())) {
                                 //Then increase it as streak (predicted numbers on that kolon)
-                                control.Text = (Convert.ToInt32(control.Text) + streak).ToString();
+                                control.Text = streak + " bilen\n" + sheetAmount;
                             }
                         }
-                        profit += streak * streakBounty; //Increase the profit
+                        profit += streak * streakBounty * sheetAmount; //Increase the profit
                     }
                 }
                 streak = 0;
@@ -164,28 +181,42 @@ namespace LotoStatistics {
         {
             //Fill the DataGrid with random values to play quickly. Values will be DISTINCT.
             bool available = true;
-            for (var i = 0; i < dataGridView1.Rows.Count - 1; i++) {
-                for (var j = 0; j < dataGridView1.ColumnCount; j++) {
-                    int number = random.Next(1, 7);
+            for (var i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                for (var j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    //First pick a random number. Then compare it with all previous values in the same kolon
+                    int number = random.Next(1, 49);
                     for (int k = 0; k < j; k++)
                     {
+                        //If any value has been drawn before
                         if ((int) dataGridView1[k, i].Value == number)
                         {
+                            //Deny it and reroll number
                             available = false;
                             j--;
                             break;
-                        }
-                        else
-                        {
+                        } else
                             available = true;
-                        }
                     }
+                    //If number is not denied, grab it
                     if (available)
-                    {
                         dataGridView1[j, i].Value = number;
-                    }
                 }
             }
+        }
+
+        private Drawn drawnForm;
+        private void button1_Click(object sender, EventArgs e) {
+            try {
+                drawnForm.Close();
+
+            } catch  {
+                //return;
+            }
+            drawnForm = new Drawn(draw);
+            drawnForm.Show();
+            
         }
     }
 }

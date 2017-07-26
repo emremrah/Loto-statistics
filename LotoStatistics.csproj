@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\BusinessLogicLayer.cs" />
     <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
+    <Compile Include="Drawn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawn.Designer.cs">
+      <DependentUpon>Drawn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="StatsForm.Designer.cs">
       <DependentUpon>StatsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Drawn.resx">
+      <DependentUpon>Drawn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

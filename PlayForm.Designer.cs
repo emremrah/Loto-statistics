@@ -46,6 +46,7 @@
             this.kolon7Label = new System.Windows.Forms.Label();
             this.kolon8Label = new System.Windows.Forms.Label();
             this.kolonPriceTxt = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,9 +72,9 @@
             this.kolonPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.kolonPriceLabel.Location = new System.Drawing.Point(607, 12);
             this.kolonPriceLabel.Name = "kolonPriceLabel";
-            this.kolonPriceLabel.Size = new System.Drawing.Size(82, 16);
+            this.kolonPriceLabel.Size = new System.Drawing.Size(86, 16);
             this.kolonPriceLabel.TabIndex = 10;
-            this.kolonPriceLabel.Text = "Kolon Price: ";
+            this.kolonPriceLabel.Text = "Kolon Fiyatı:  ";
             // 
             // playButton
             // 
@@ -90,7 +91,7 @@
             // 
             this.kolon1Label.AutoSize = true;
             this.kolon1Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon1Label.Location = new System.Drawing.Point(28, 313);
+            this.kolon1Label.Location = new System.Drawing.Point(8, 313);
             this.kolon1Label.Name = "kolon1Label";
             this.kolon1Label.Size = new System.Drawing.Size(19, 21);
             this.kolon1Label.TabIndex = 12;
@@ -100,7 +101,7 @@
             // 
             this.kolon2Label.AutoSize = true;
             this.kolon2Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon2Label.Location = new System.Drawing.Point(106, 313);
+            this.kolon2Label.Location = new System.Drawing.Point(100, 313);
             this.kolon2Label.Name = "kolon2Label";
             this.kolon2Label.Size = new System.Drawing.Size(19, 21);
             this.kolon2Label.TabIndex = 13;
@@ -110,7 +111,7 @@
             // 
             this.kolon3Label.AutoSize = true;
             this.kolon3Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon3Label.Location = new System.Drawing.Point(183, 313);
+            this.kolon3Label.Location = new System.Drawing.Point(192, 313);
             this.kolon3Label.Name = "kolon3Label";
             this.kolon3Label.Size = new System.Drawing.Size(19, 21);
             this.kolon3Label.TabIndex = 14;
@@ -120,7 +121,7 @@
             // 
             this.kolon4Label.AutoSize = true;
             this.kolon4Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon4Label.Location = new System.Drawing.Point(257, 313);
+            this.kolon4Label.Location = new System.Drawing.Point(284, 313);
             this.kolon4Label.Name = "kolon4Label";
             this.kolon4Label.Size = new System.Drawing.Size(19, 21);
             this.kolon4Label.TabIndex = 15;
@@ -130,7 +131,7 @@
             // 
             this.kolon5Label.AutoSize = true;
             this.kolon5Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon5Label.Location = new System.Drawing.Point(332, 313);
+            this.kolon5Label.Location = new System.Drawing.Point(376, 313);
             this.kolon5Label.Name = "kolon5Label";
             this.kolon5Label.Size = new System.Drawing.Size(19, 21);
             this.kolon5Label.TabIndex = 16;
@@ -140,7 +141,7 @@
             // 
             this.kolon6Label.AutoSize = true;
             this.kolon6Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon6Label.Location = new System.Drawing.Point(409, 313);
+            this.kolon6Label.Location = new System.Drawing.Point(468, 313);
             this.kolon6Label.Name = "kolon6Label";
             this.kolon6Label.Size = new System.Drawing.Size(19, 21);
             this.kolon6Label.TabIndex = 17;
@@ -152,14 +153,14 @@
             this.sheetAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.sheetAmountLabel.Location = new System.Drawing.Point(607, 51);
             this.sheetAmountLabel.Name = "sheetAmountLabel";
-            this.sheetAmountLabel.Size = new System.Drawing.Size(97, 16);
+            this.sheetAmountLabel.Size = new System.Drawing.Size(83, 16);
             this.sheetAmountLabel.TabIndex = 19;
-            this.sheetAmountLabel.Text = "Sheet Amount: ";
+            this.sheetAmountLabel.Text = "Form sayısı: ";
             // 
             // profitLabel
             // 
             this.profitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.profitLabel.Location = new System.Drawing.Point(247, 368);
+            this.profitLabel.Location = new System.Drawing.Point(164, 358);
             this.profitLabel.Name = "profitLabel";
             this.profitLabel.Size = new System.Drawing.Size(130, 50);
             this.profitLabel.TabIndex = 20;
@@ -180,7 +181,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(312, 292);
+            this.label2.Location = new System.Drawing.Point(376, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 21);
             this.label2.TabIndex = 22;
@@ -190,7 +191,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(236, 292);
+            this.label3.Location = new System.Drawing.Point(284, 292);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 21);
             this.label3.TabIndex = 23;
@@ -200,7 +201,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(160, 292);
+            this.label4.Location = new System.Drawing.Point(192, 292);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 21);
             this.label4.TabIndex = 24;
@@ -210,7 +211,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(84, 292);
+            this.label5.Location = new System.Drawing.Point(100, 292);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 21);
             this.label5.TabIndex = 25;
@@ -220,7 +221,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(388, 292);
+            this.label6.Location = new System.Drawing.Point(468, 292);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 21);
             this.label6.TabIndex = 26;
@@ -230,7 +231,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.Location = new System.Drawing.Point(465, 292);
+            this.label7.Location = new System.Drawing.Point(561, 292);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 21);
             this.label7.TabIndex = 27;
@@ -240,7 +241,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label8.Location = new System.Drawing.Point(536, 292);
+            this.label8.Location = new System.Drawing.Point(648, 292);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 21);
             this.label8.TabIndex = 28;
@@ -250,7 +251,7 @@
             // 
             this.kolon7Label.AutoSize = true;
             this.kolon7Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon7Label.Location = new System.Drawing.Point(485, 313);
+            this.kolon7Label.Location = new System.Drawing.Point(561, 313);
             this.kolon7Label.Name = "kolon7Label";
             this.kolon7Label.Size = new System.Drawing.Size(19, 21);
             this.kolon7Label.TabIndex = 29;
@@ -260,7 +261,7 @@
             // 
             this.kolon8Label.AutoSize = true;
             this.kolon8Label.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.kolon8Label.Location = new System.Drawing.Point(555, 313);
+            this.kolon8Label.Location = new System.Drawing.Point(648, 313);
             this.kolon8Label.Name = "kolon8Label";
             this.kolon8Label.Size = new System.Drawing.Size(19, 21);
             this.kolon8Label.TabIndex = 30;
@@ -273,12 +274,24 @@
             this.kolonPriceTxt.Size = new System.Drawing.Size(47, 20);
             this.kolonPriceTxt.TabIndex = 31;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.Location = new System.Drawing.Point(541, 394);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 43);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Show Randoms";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PlayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(753, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.kolonPriceTxt);
             this.Controls.Add(this.kolon8Label);
             this.Controls.Add(this.kolon7Label);
@@ -336,5 +349,6 @@
         private System.Windows.Forms.Label kolon7Label;
         private System.Windows.Forms.Label kolon8Label;
         private System.Windows.Forms.TextBox kolonPriceTxt;
+        private System.Windows.Forms.Button button1;
     }
 }
