@@ -15,14 +15,13 @@ namespace LotoStatistics {
         private Kolon[] kolon = new Kolon[8];
         private int[,] draw = new int[6, 8];
         private Sheet[] sheets;
-        private int profit = 0;
         private int KolonPrice = 4;
         private const int streakBounty = 1000;
         private int streak = 0;
         private int sheetAmount = 0;
         private int sheetPrice = 0;
         Random random = new Random();
-        private int ucBilen = 0, dortBilen = 0, besBilen = 0, altiBilen = 0; 
+        private int ucBilen = 0, dortBilen = 0, besBilen = 0; 
 
         public PlayForm() {
 
@@ -82,16 +81,20 @@ namespace LotoStatistics {
         private void InitializeSheet()
         {
             sheets = new Sheet[sheetAmount];
-
             //Generate 8 number of kolons
-            for (var i = 0; i < kolon.Length; i++) {
-                kolon[i] = new Kolon();
-            }
+            //for (var i = 0; i < kolon.Length; i++) {
+            //    kolon[i] = new Kolon();
+            //}
+
             //Generate single sheet and prepare it's kolon
             for (int i = 0; i < sheetAmount; i++)
             {
+                sheets[i] = new Sheet();
                 //Hepsinin kolonunu aynı kolon yaptığım için call by reference oluyor sanırım. Hepsi aynı çıkıyor
-                sheets[i] = new Sheet(kolon);
+                for (int j = 0; j < 8; j++)
+                {
+                    sheets[i].Kolons[j]= new Kolon();
+                }
             }
             
             //Take all numbers in kolons from DataGrid
@@ -99,7 +102,7 @@ namespace LotoStatistics {
             {
                 for (var i = 0; i < 8; i++) {
                     for (var j = 0; j < 6; j++) {
-                        sheets[m].kolon[i].numbers[j] = random.Next(1,10);
+                        sheets[m].Kolons[i].numbers[j] = random.Next(1,10);
                     }
                 }
             }
@@ -162,7 +165,7 @@ namespace LotoStatistics {
                 {
                     for (int j = 0; j < 6; j++)
                     {
-                        if (draw[j, i] == sheets[mIndex].kolon[i].numbers[j])
+                        if (draw[j, i] == sheets[mIndex].Kolons[i].numbers[j])
                         {
                             streak++;
                         }
@@ -261,7 +264,7 @@ namespace LotoStatistics {
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    dataGridView1[j, i].Value = sheets[comboBox1.SelectedIndex + 1].kolon[i].numbers[j];
+                    dataGridView1[j, i].Value = sheets[comboBox1.SelectedIndex + 1].Kolons[i].numbers[j];
                 }
             }
         }
