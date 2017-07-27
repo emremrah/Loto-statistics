@@ -89,10 +89,11 @@
             // 
             // profitLabel
             // 
+            this.profitLabel.AutoSize = true;
             this.profitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.profitLabel.Location = new System.Drawing.Point(164, 381);
+            this.profitLabel.Location = new System.Drawing.Point(190, 368);
             this.profitLabel.Name = "profitLabel";
-            this.profitLabel.Size = new System.Drawing.Size(130, 50);
+            this.profitLabel.Size = new System.Drawing.Size(110, 42);
             this.profitLabel.TabIndex = 20;
             this.profitLabel.Text = "Profit";
             this.profitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

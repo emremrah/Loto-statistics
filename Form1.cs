@@ -18,7 +18,6 @@ namespace LotoStatistics {
     public partial class Form1: Form {
 
         Dictionary<string, string> monthSeason = new Dictionary<string, string>();
-        Dictionary<string, string> seasonLang = new Dictionary<string, string>();
 
         public Form1() {
 
@@ -56,14 +55,14 @@ namespace LotoStatistics {
             //Calculate total amount of draw for one ball
             int sum=0;
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
-                sum += (int) dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem.ToString() + "SAYI"].Index, i].Value;
+                sum += (int) dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem + "SAYI"].Index, i].Value;
             }
 
             //Add a new column with a name that depending on ball
-            dataGrid.Columns.Add(ballsComboBox.SelectedItem.ToString() + "ratio", ballsComboBox.SelectedItem.ToString() + "%");
+            dataGrid.Columns.Add(ballsComboBox.SelectedItem + "ratio", ballsComboBox.SelectedItem + "%");
             //Add the show ratios for each number on the ball
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++) {
-                dataGrid[ballsComboBox.SelectedItem.ToString() + "ratio", i].Value = Convert.ToDouble(dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem.ToString() + "ratio"].Index - 1, i].Value) * 100 / sum;
+                dataGrid[ballsComboBox.SelectedItem + "ratio", i].Value = Convert.ToDouble(dataGrid[dataGrid.Columns[ballsComboBox.SelectedItem + "ratio"].Index - 1, i].Value) * 100 / sum;
             }
         }
 
@@ -122,10 +121,6 @@ namespace LotoStatistics {
                 }
             }
             progressBar1.Visible = false;
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e) {
-
         }
 
         private void playLotoButton_Click(object sender, EventArgs e) {

@@ -74,10 +74,9 @@ namespace LotoStatistics {
                     control.Text = control.Name.Substring(5) + " Bilen: ";
                 }
             }
+            InitializeVariables();
             
             InitializeComboBox();
-
-            InitializeVariables();
 
             InitializeSheets();
 
@@ -85,7 +84,10 @@ namespace LotoStatistics {
 
             DrawLoto();
 
-            profitLabel.Text = (profit - Convert.ToInt32(betText.Text)).ToString();
+            profitLabel.Text = (profit - Convert.ToInt64(betText.Text)).ToString();
+
+            dataGridView1[0, 0].Selected = false;
+            comboBox1.SelectedIndex = 0;
         }
 
         private void InitializeSheets()
@@ -103,8 +105,20 @@ namespace LotoStatistics {
             //Fill all sheets and all kolons with random values
             for (int m = 0; m < sheetAmount; m++) {
                 for (var i = 0; i < 8; i++) {
-                    for (var j = 0; j < 6; j++) {
-                        sheets[m].Kolons[i].numbers[j] = random.Next(1, 10);
+                    for (var j = 0; j < 6; j++)
+                    {
+                        bool available = true;
+                        int number = random.Next(1, 49);
+                        for (int k = 0; k < j; k++)
+                        {
+                            if (sheets[m].Kolons[i].numbers[k] == number)
+                            {
+                                available = false;
+                                j--;
+                                break;
+                            }
+                        }
+                        if (available) sheets[m].Kolons[i].numbers[j] = random.Next(1, 49);
                     }
                 }
             }
@@ -117,7 +131,7 @@ namespace LotoStatistics {
             bool available = true;
             for (int i = 0; i < randomDraw.Length; i++)
             {
-                int number = random.Next(1, 10);
+                int number = random.Next(1, 49);
                 for (int j = 0; j < i; j++)
                 {
                     if (randomDraw[j] == number)
@@ -213,10 +227,16 @@ namespace LotoStatistics {
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    dataGridView1[j, i].Value = sheets[comboBox1.SelectedIndex].Kolons[i].numbers[j];
-                    if ((int) dataGridView1[j, i].Value == randomDraw[j])
-                        dataGridView1[j, i].Style.BackColor = Color.CornflowerBlue;
-                    else dataGridView1[j, i].Style.BackColor = Color.White;
+                    try {
+                        dataGridView1[j, i].Value = sheets[comboBox1.SelectedIndex].Kolons[i].numbers[j];
+                        if ((int) dataGridView1[j, i].Value == randomDraw[j])
+                            dataGridView1[j, i].Style.BackColor = Color.CornflowerBlue;
+                        else
+                            dataGridView1[j, i].Style.BackColor = Color.White;
+                    } catch (Exception) {
+                        MessageBox.Show("Doğru sayı seçtiğinizden emin olun.");
+                        return;
+                    }
                 }
             }
         }

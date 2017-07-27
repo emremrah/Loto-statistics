@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LotoStatistics {
     class Kolon {
+
         public int[] numbers {
             get;
             set;

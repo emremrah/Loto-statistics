@@ -7,17 +7,7 @@ using System.Threading.Tasks;
 namespace LotoStatistics {
 
     class Sheet {
-        public Kolon[] kolon {
-            get;
-            set;
-        }
-
         public List<Kolon> Kolons = new List<Kolon>(8);
-
-        public Sheet(Kolon[] _kolon)
-        {
-            kolon = _kolon;
-        }
 
         public Sheet()
         {
