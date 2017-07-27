@@ -11,8 +11,8 @@ using System.Windows.Forms;
 namespace LotoStatistics {
     public partial class Drawn: Form
     {
-        private int[,] drawn;
-        public Drawn(int[,] drawn) {
+        private int[] drawn;
+        public Drawn(int[] drawn) {
             InitializeComponent();
             this.drawn = drawn;
         }
@@ -24,14 +24,11 @@ namespace LotoStatistics {
             drawnDataGrid.Columns.Add("BALL4", "TOP4");
             drawnDataGrid.Columns.Add("BALL5", "TOP5");
             drawnDataGrid.Columns.Add("BALL6", "TOP6");
-            drawnDataGrid.Rows.Add(count : 8);
+            drawnDataGrid.Rows.Add(count : 1);
 
-            for (int i = 0; i < drawn.GetLength(1); i++)
+            for (int i = 0; i < drawn.Length; i++)
             {
-                for (int j = 0; j < drawn.GetLength(0); j++)
-                {
-                    drawnDataGrid[j, i].Value = drawn[j,i];
-                }
+                drawnDataGrid[i, 0].Value = drawn[i];
             }
         }
     }

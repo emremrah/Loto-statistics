@@ -30,9 +30,10 @@
             // drawnDataGrid
             // 
             this.drawnDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.drawnDataGrid.Location = new System.Drawing.Point(12, 12);
+            this.drawnDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drawnDataGrid.Location = new System.Drawing.Point(0, 0);
             this.drawnDataGrid.Name = "drawnDataGrid";
-            this.drawnDataGrid.Size = new System.Drawing.Size(586, 378);
+            this.drawnDataGrid.Size = new System.Drawing.Size(610, 402);
             this.drawnDataGrid.TabIndex = 0;
             // 
             // Drawn
