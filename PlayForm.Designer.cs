@@ -47,6 +47,7 @@
             this.kolon8Label = new System.Windows.Forms.Label();
             this.kolonPriceTxt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,7 +161,7 @@
             // profitLabel
             // 
             this.profitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.profitLabel.Location = new System.Drawing.Point(164, 358);
+            this.profitLabel.Location = new System.Drawing.Point(164, 381);
             this.profitLabel.Name = "profitLabel";
             this.profitLabel.Size = new System.Drawing.Size(130, 50);
             this.profitLabel.TabIndex = 20;
@@ -285,12 +286,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(607, 117);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 33;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // PlayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(753, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.kolonPriceTxt);
             this.Controls.Add(this.kolon8Label);
@@ -350,5 +361,6 @@
         private System.Windows.Forms.Label kolon8Label;
         private System.Windows.Forms.TextBox kolonPriceTxt;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace LotoStatistics {
     class Kolon {
-        public float bounty {
-            get;
-            set;
-        }
         public int[] numbers {
-            get;
-            set;
-        }
-        public float price {
             get;
             set;
         }
